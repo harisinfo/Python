@@ -53,7 +53,7 @@ except:
 
 Nginx Log rule: $remote_addr - $remote_user [$time_local] "$request" $status $body_bytes_sent "$http_referer" "$http_user_agent" "$http_x_forwarded_for"
 
-Example: 88.5.132.162 - - [16/Jul/2013:03:20:12 +0100] "GET /json/auction/update/ HTTP/1.1" 200 2313 "http://es.madbid.com/" "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; WOW64; Trident/6.0)"
+Example: 88.5.132.162 - - [16/Jul/2013:03:20:12 +0100] "GET /json/my/get/request HTTP/1.1" 200 2313 "http://www.harisinfo.co.uk/" "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; WOW64; Trident/6.0)"
 
 Pattern to match:string\s-\sstring\s[string]\s"string"\sstring\sstring\s"string"\s"string"\s"string"
 
