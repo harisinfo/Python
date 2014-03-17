@@ -67,7 +67,7 @@ except:
   print "Unknown input file ", inputfile
   sys.exit( 3 )
 
-cursor = connectToDbServer( 'myserver.net', 'my_user', 'my_password' )
+cursor = connectToDbServer( 'my_server', 'my_user', 'my_password' )
 
 try:
     cursor.execute( "USE " + sourcedb )
