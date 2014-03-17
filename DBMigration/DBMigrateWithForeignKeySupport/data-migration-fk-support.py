@@ -18,7 +18,7 @@ def connectToDbServer( dbServerHost, dbServerUser, dbServerPassword ):
       return "FALSE";
 
 def usage( errorCode ):
-    print "/usr/bin/python populate-data.py --source-database <source_database> --target-database <target_database> --input-file <file_name_to_get_data_from>", errorCode 
+    print "/usr/bin/python populate-data.py --source-database <source_database> --target-database <target_database> --input-file <file_name_to_get_data_from> --source-dbserver <source_db_server_name> --source-dbuser <source_db_user_name>  --source-dbpassword <source_db_password> --remote-dbserver <remote_db_server_name> --remote-dbuser <remote_db_user_name>  --remote-dbpassword <remote_db_password>", errorCode 
     return;
 
 def checkIfValExistsInGrid( haystack, needle, bucket ):
@@ -35,6 +35,12 @@ def checkIfValExistsInGrid( haystack, needle, bucket ):
 sourcedb = ''
 targetdb = ''
 inputfile = ''
+source_db_server = ''
+source_db_user = ''
+source_db_password = ''
+remote_db_server = ''
+remote_db_user = ''
+remote_db_password = ''
 strip_from_table_name = "(),'"
 show_create_table = []
 constraint_table = []
@@ -44,7 +50,7 @@ constraint_tables_import = []
 table_import_list = []
 
 try:
-    opts, args = getopt.getopt( sys.argv[1:], "s:t:i:h", [ 'source-database=', 'target-database=', 'input-file=', 'help' ] )
+    opts, args = getopt.getopt( sys.argv[1:], "s:t:i:h", [ 'source-database=', 'target-database=', 'input-file=', 'source-dbserver=', 'source-dbuser=', 'source-dbpassword=', 'remote-dbserver=', 'remote-dbuser=', 'remote-dbpassword=', 'help' ] )
 except getopt.GetoptError:
     usage( 1 )
     sys.exit( 1 )
@@ -57,6 +63,12 @@ for opt, arg in opts:
     targetdb = arg
   elif opt == '--input-file':
     inputfile = arg
+  elif opt == '--source-dbserver':
+    source_db_server = arg    
+  elif opt == '--source-dbuser':
+    source_db_user = arg        
+  elif opt == '--source-dbpassword':
+    source_db_password = arg        
   else:
     usage( 2 )
     sys.exit( 2 )
@@ -67,7 +79,7 @@ except:
   print "Unknown input file ", inputfile
   sys.exit( 3 )
 
-cursor = connectToDbServer( 'my_server', 'my_user', 'my_password' )
+cursor = connectToDbServer( source_db_server, source_db_user, source_db_password )
 
 try:
     cursor.execute( "USE " + sourcedb )
